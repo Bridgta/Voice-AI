@@ -3,7 +3,7 @@ import alanBtn from "@alan-ai/alan-sdk-web";
 import NewsCards from "./components/NewsCards/NewsCards";
 
 const alanKey =
-   ;
+    "40767133e17cb02dc49eecc6f2c6326c2e956eca572e1d8b807a3e2338fdd0dc/stage";
 
 const App = () => {
     const [newsArticles, setNewsArticles] = useState([]);
