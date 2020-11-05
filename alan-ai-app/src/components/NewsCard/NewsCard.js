@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Crad,
+    Card,
     CardActions,
     CardActionArea,
     CardContent,
@@ -8,14 +8,16 @@ import {
     Button,
     Typography,
 } from "@material-ui/core";
+import useStyles from "./styles.js";
 
 const NewsCard = ({
-    articles: { description, publishedAt, source, title, url, urlToImage },
+    article: { description, publishedAt, source, title, url, urlToImage },
     i,
 }) => {
+    const classes = useStyles();
     return (
-        <Card>
-            <CardActionArea>
+        <Card className={classes.card}>
+            <CardActionArea href={url} target="_blank">
                 <CardMedia
                     className={classes.media}
                     image={
@@ -24,31 +26,47 @@ const NewsCard = ({
                     }
                     title={title}
                 />
-                <div>
+                <div className={classes.details}>
                     <Typography
-                        varient="body2"
+                        variant="body2"
                         color="textSecondary"
                         component="h2"
-                    />
-
+                    >
+                        {new Date(publishedAt).toDateString()}
+                    </Typography>
                     <Typography
-                        varient="body2"
+                        variant="body2"
                         color="textSecondary"
                         component="h2"
-                    />
+                    >
+                        {source.name}
+                    </Typography>
                 </div>
-                <Typography gutterBottom varient="h5" />
+                <Typography
+                    className={classes.title}
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                >
+                    {title}
+                </Typography>
                 <CardContent>
                     <Typography
                         variant="body2"
                         color="textSecondary"
                         component="p"
-                    />
+                    >
+                        {description}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary" />
-                <Typography varient="h5" color="textSecondary" />
+            <CardActions className={classes.cardActions}>
+                <Button size="small" color="primary" href={url}>
+                    Learn More
+                </Button>
+                <Typography variant="h5" color="textSecondary" component="h2">
+                    {i + 1}
+                </Typography>
             </CardActions>
         </Card>
     );
